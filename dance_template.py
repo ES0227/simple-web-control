@@ -33,6 +33,7 @@ def run_motors_timed(mav_connection, seconds: int, motor_settings: list) -> None
     while step < seconds:
         for i in range(len(motor_settings)):
             test_motor(mav_connection=mav_connection, motor_id=i, power=motor_settings[i])
+
         time.sleep(0.2)
         step += 0.2
 
@@ -52,10 +53,12 @@ if __name__ == "__main__":
     Call sequence of calls to run_timed_motors to execute choreography
     Motors power ranges from -100 to 100
     """
-    run_motors_timed(mav_connection, seconds=5, motor_settings=[100,-100 ,100 ,-100, 0, 0])
-    run_motors_timed(mav_connection, seconds=5, motor_settings=[-100,100 ,-100 ,100, 0, 0])
+    run_motors_timed(mav_connection, seconds=3, motor_settings=[100, 100, -100, -100, 0, 0]) #AUV will move straight 
+    run_motors_timed(mav_connection, seconds=5, motor_settings=[100, -100, 100, -100, 0, 0]) #AUV will do the crab
     # stop
-    run_motors_timed(mav_connection, seconds=5, motor_settings=[0, 0, 0, 0, 0, 0])
+    run_motors_timed(mav_connection, seconds=5, motor_settings=[100, 50, 100, 50, 0, 0]) #AUV will do the donut
+    run_motors_timed(mav_connection, seconds=5, motor_settings=[100, 50, 100, 50, 0, 0]) #AUV will 
+    run_motors_timed(mav_connection, seconds=5, motor_settings=[100, 50, 100, 50, 0, 0])
 
     ####
     # Disarm ROV and exit
